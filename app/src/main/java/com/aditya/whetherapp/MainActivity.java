@@ -6,11 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,14 +26,19 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView textView;
     EditText editText;
+    ImageView cloud;
+    ImageView cloudy_fog;
+    ImageView haze;
+    ImageView pollution;
+    ImageView rain;
+    ImageView storm;
+    ImageView clear;
+    ImageView mist;
 
     String mainInfo; //will us whether the sky is clear or not
     String descriptionMainInfo=""; //description of the weather
@@ -128,6 +135,106 @@ public class MainActivity extends AppCompatActivity {
                     textView.setText(message);
                 }
 
+                if(mainInfo.equals("Clouds"))
+                {
+                    cloud.animate().rotation(360).alpha(1).setDuration(2000);
+                    cloudy_fog.animate().rotation(720).alpha(0).setDuration(2000);
+                    haze.animate().rotation(1080).alpha(0).setDuration(2000);
+                    pollution.animate().rotation(1440).alpha(0).setDuration(2000);
+                    rain.animate().rotation(1800).alpha(0).setDuration(2000);
+                    storm.animate().rotation(2160).alpha(0).setDuration(2000);
+                    clear.animate().rotation(2520).alpha(0).setDuration(2000);
+                    mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                }
+                else if(mainInfo.equals("Clear"))
+                {
+                    cloud.animate().rotation(360).alpha(0).setDuration(2000);
+                    cloudy_fog.animate().rotation(720).alpha(0).setDuration(2000);
+                    haze.animate().rotation(1080).alpha(0).setDuration(2000);
+                    pollution.animate().rotation(1440).alpha(0).setDuration(2000);
+                    rain.animate().rotation(1800).alpha(0).setDuration(2000);
+                    storm.animate().rotation(2160).alpha(0).setDuration(2000);
+                    clear.animate().rotation(2520).alpha(1).setDuration(2000);
+                    mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                }
+                else if(mainInfo.equals("Mist"))
+                {
+                    cloud.animate().rotation(360).alpha(0).setDuration(2000);
+                    cloudy_fog.animate().rotation(720).alpha(0).setDuration(2000);
+                    haze.animate().rotation(1080).alpha(0).setDuration(2000);
+                    pollution.animate().rotation(1440).alpha(0).setDuration(2000);
+                    rain.animate().rotation(1800).alpha(0).setDuration(2000);
+                    storm.animate().rotation(2160).alpha(0).setDuration(2000);
+                    clear.animate().rotation(2520).alpha(0).setDuration(2000);
+                    mist.animate().rotation(2880).alpha(1).setDuration(2000);
+                }
+                else if(mainInfo.equals("Cloudy fog"))
+                {
+                    cloud.animate().rotation(360).alpha(0).setDuration(2000);
+                    cloudy_fog.animate().rotation(720).alpha(1).setDuration(2000);
+                    haze.animate().rotation(1080).alpha(0).setDuration(2000);
+                    pollution.animate().rotation(1440).alpha(0).setDuration(2000);
+                    rain.animate().rotation(1800).alpha(0).setDuration(2000);
+                    storm.animate().rotation(2160).alpha(0).setDuration(2000);
+                    clear.animate().rotation(2520).alpha(0).setDuration(2000);
+                    mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                }
+                else if(mainInfo.equals("Haze"))
+                {
+                    cloud.animate().rotation(360).alpha(0).setDuration(2000);
+                    cloudy_fog.animate().rotation(720).alpha(0).setDuration(2000);
+                    haze.animate().rotation(1080).alpha(1).setDuration(2000);
+                    pollution.animate().rotation(1440).alpha(0).setDuration(2000);
+                    rain.animate().rotation(1800).alpha(0).setDuration(2000);
+                    storm.animate().rotation(2160).alpha(0).setDuration(2000);
+                    clear.animate().rotation(2520).alpha(0).setDuration(2000);
+                    mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                }
+                else if(mainInfo.equals("Smoke"))
+                {
+                    cloud.animate().rotation(360).alpha(0).setDuration(2000);
+                    cloudy_fog.animate().rotation(720).alpha(0).setDuration(2000);
+                    haze.animate().rotation(1080).alpha(0).setDuration(2000);
+                    pollution.animate().rotation(1440).alpha(1).setDuration(2000);
+                    rain.animate().rotation(1800).alpha(0).setDuration(2000);
+                    storm.animate().rotation(2160).alpha(0).setDuration(2000);
+                    clear.animate().rotation(2520).alpha(0).setDuration(2000);
+                    mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                }
+                else if(mainInfo.equals("Rain"))
+                {
+                    cloud.animate().rotation(360).alpha(0).setDuration(2000);
+                    cloudy_fog.animate().rotation(720).alpha(0).setDuration(2000);
+                    haze.animate().rotation(1080).alpha(0).setDuration(2000);
+                    pollution.animate().rotation(1440).alpha(0).setDuration(2000);
+                    rain.animate().rotation(1800).alpha(1).setDuration(2000);
+                    storm.animate().rotation(2160).alpha(0).setDuration(2000);
+                    clear.animate().rotation(2520).alpha(0).setDuration(2000);
+                    mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                }
+                else if(mainInfo.equals("Storm"))
+                {
+                    cloud.animate().rotation(360).alpha(0).setDuration(2000);
+                    cloudy_fog.animate().rotation(720).alpha(0).setDuration(2000);
+                    haze.animate().rotation(1080).alpha(0).setDuration(2000);
+                    pollution.animate().rotation(1440).alpha(0).setDuration(2000);
+                    rain.animate().rotation(1800).alpha(0).setDuration(2000);
+                    storm.animate().rotation(2160).alpha(1).setDuration(2000);
+                    clear.animate().rotation(2520).alpha(0).setDuration(2000);
+                    mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                }
+                else
+                {
+                    cloud.animate().rotation(360).alpha(0).setDuration(2000);
+                    cloudy_fog.animate().rotation(720).alpha(0).setDuration(2000);
+                    haze.animate().rotation(1080).alpha(0).setDuration(2000);
+                    pollution.animate().rotation(1440).alpha(0).setDuration(2000);
+                    rain.animate().rotation(1800).alpha(0).setDuration(2000);
+                    storm.animate().rotation(2160).alpha(0).setDuration(2000);
+                    clear.animate().rotation(2520).alpha(0).setDuration(2000);
+                    mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                }
+
                 //this will grab the contents inside the weather key in tha json result that we will get from the server
                 JSONObject jsonObject2 = new JSONObject(s);
                 String TemperatureInfo = jsonObject2.getString("main"); //jsonObject.getString(weather key extracted from the json Viewer online)
@@ -139,6 +246,8 @@ public class MainActivity extends AppCompatActivity {
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                String message  = "failed!";
+                Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -163,9 +272,10 @@ public class MainActivity extends AppCompatActivity {
         catch(Exception e)
         {
             e.printStackTrace(); // this will print out and log whatever the error there is
+            String message  = "failed!";
+            Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
         }
         Log.i("result",result);
-        Toast.makeText(this,result,Toast.LENGTH_SHORT).show();
 
         //making the keyboard disappear when the user hits the button whats the weather?
         InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -179,6 +289,14 @@ public class MainActivity extends AppCompatActivity {
 
         textView = (TextView)findViewById(R.id.textView);
         editText = (EditText)findViewById(R.id.editText);
+        cloud = (ImageView)findViewById(R.id.cloud);
+        cloudy_fog = (ImageView)findViewById(R.id.cloudy_fog);
+        haze = (ImageView)findViewById(R.id.haze);
+        pollution = (ImageView)findViewById(R.id.pollution);
+        rain = (ImageView)findViewById(R.id.rain);
+        storm = (ImageView)findViewById(R.id.storm);
+        clear = (ImageView)findViewById(R.id.clear);
+        mist = (ImageView)findViewById(R.id.mist);
 
         Button button = (Button)findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
