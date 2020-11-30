@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -26,10 +27,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Collections;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView textView;
+    TextView textViewTemperature;
+    TextView textViewHumidity;
     EditText editText;
     ImageView cloud;
     ImageView cloudy_fog;
@@ -39,14 +44,22 @@ public class MainActivity extends AppCompatActivity {
     ImageView storm;
     ImageView clear;
     ImageView mist;
+    ImageView snow;
+    ImageView humidPercent;
+
+    //temperature related images
+    ImageView hot;
+    ImageView cold;
+    ImageView freezing;
+    ImageView spring;
 
     String mainInfo; //will us whether the sky is clear or not
     String descriptionMainInfo=""; //description of the weather
 
     //extracted temperature is in kelvin
-    String tempInfo=""; //temperature related information extracted from the api will be stored
+    double tempInfo; //temperature related information extracted from the api will be stored
     // humidity is in percentage
-    String humidityInfo=""; //humidity related info will be stored here
+    int humidity2; //stores maximum temperature in a day
 
     //creating a new class for managing downloads in the background thread
     //it borrows from the existing class the AsyncTask
@@ -145,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
                     storm.animate().rotation(2160).alpha(0).setDuration(2000);
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                    snow.animate().rotation(2880).alpha(0).setDuration(2000);
                 }
                 else if(mainInfo.equals("Clear"))
                 {
@@ -156,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
                     storm.animate().rotation(2160).alpha(0).setDuration(2000);
                     clear.animate().rotation(2520).alpha(1).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                    snow.animate().rotation(2880).alpha(0).setDuration(2000);
                 }
                 else if(mainInfo.equals("Mist"))
                 {
@@ -167,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
                     storm.animate().rotation(2160).alpha(0).setDuration(2000);
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(1).setDuration(2000);
+                    snow.animate().rotation(2880).alpha(0).setDuration(2000);
                 }
                 else if(mainInfo.equals("Cloudy fog"))
                 {
@@ -178,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
                     storm.animate().rotation(2160).alpha(0).setDuration(2000);
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                    snow.animate().rotation(2880).alpha(0).setDuration(2000);
                 }
                 else if(mainInfo.equals("Haze"))
                 {
@@ -189,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
                     storm.animate().rotation(2160).alpha(0).setDuration(2000);
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                    snow.animate().rotation(2880).alpha(0).setDuration(2000);
                 }
                 else if(mainInfo.equals("Smoke"))
                 {
@@ -200,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
                     storm.animate().rotation(2160).alpha(0).setDuration(2000);
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                    snow.animate().rotation(2880).alpha(0).setDuration(2000);
                 }
                 else if(mainInfo.equals("Rain"))
                 {
@@ -211,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
                     storm.animate().rotation(2160).alpha(0).setDuration(2000);
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                    snow.animate().rotation(2880).alpha(0).setDuration(2000);
                 }
                 else if(mainInfo.equals("Storm"))
                 {
@@ -222,6 +242,19 @@ public class MainActivity extends AppCompatActivity {
                     storm.animate().rotation(2160).alpha(1).setDuration(2000);
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                    snow.animate().rotation(2880).alpha(0).setDuration(2000);
+                }
+                else if(mainInfo.equals("Snow"))
+                {
+                    cloud.animate().rotation(360).alpha(0).setDuration(2000);
+                    cloudy_fog.animate().rotation(720).alpha(0).setDuration(2000);
+                    haze.animate().rotation(1080).alpha(0).setDuration(2000);
+                    pollution.animate().rotation(1440).alpha(0).setDuration(2000);
+                    rain.animate().rotation(1800).alpha(0).setDuration(2000);
+                    storm.animate().rotation(2160).alpha(0).setDuration(2000);
+                    clear.animate().rotation(2520).alpha(0).setDuration(2000);
+                    mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                    snow.animate().rotation(2880).alpha(1).setDuration(2000);
                 }
                 else
                 {
@@ -233,21 +266,75 @@ public class MainActivity extends AppCompatActivity {
                     storm.animate().rotation(2160).alpha(0).setDuration(2000);
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                    snow.animate().rotation(2880).alpha(0).setDuration(2000);
                 }
 
                 //this will grab the contents inside the weather key in tha json result that we will get from the server
                 JSONObject jsonObject2 = new JSONObject(s);
                 String TemperatureInfo = jsonObject2.getString("main"); //jsonObject.getString(weather key extracted from the json Viewer online)
                 Log.i("TemperatureInfo", TemperatureInfo);
-                //I cant figure out how to deal with this
-                //I tried regex but it wont work
-                //I cant understand how to handel this with json
+                List<String> weatherList = Collections.singletonList(TemperatureInfo);
 
+                /*
+                weatherList.get(0).substring(8,13) it allows us to cut the value of temperature in string format
+                from the TemperatureInfo String
+                 */
+                Log.i("CurrentTemperature",weatherList.get(0).substring(8,13));
+                String CurrentTemperature = weatherList.get(0).substring(8,13);
+                //tempInfo in kelvin
+                tempInfo = Double.parseDouble(CurrentTemperature); //converting String into double
+                int degreeCelsius = (int)tempInfo - 273; //converting kelvin into degree celsius
+                String stringdegreeCelsius = Integer.toString(degreeCelsius); //converting double into string
+                String celsius  = "℃";
+                textViewTemperature.setText(stringdegreeCelsius +" "+celsius);
+
+                if(degreeCelsius>=40)
+                {    //hot day
+                    hot.animate().rotation(360).alpha(1).setDuration(2000);
+                    cold.animate().rotation(1440).alpha(0).setDuration(2000);
+                    freezing.animate().rotation(2520).alpha(0).setDuration(2000);
+                    spring.animate().rotation(3240).alpha(0).setDuration(2000);
+                }
+                else if(degreeCelsius<=20 && degreeCelsius>=3)
+                {  //cold day
+                    hot.animate().rotation(720).alpha(0).setDuration(2000);
+                    cold.animate().rotation(1800).alpha(1).setDuration(2000);
+                    freezing.animate().rotation(2880).alpha(0).setDuration(2000);
+                    spring.animate().rotation(3240).alpha(0).setDuration(2000);
+                }
+                else if(degreeCelsius<=0)
+                {
+                    //freezing
+                    hot.animate().rotation(1080).alpha(0).setDuration(2000);
+                    cold.animate().rotation(2160).alpha(0).setDuration(2000);
+                    freezing.animate().rotation(3240).alpha(1).setDuration(2000);
+                    spring.animate().rotation(3240).alpha(0).setDuration(2000);
+                }
+                else
+                {
+                   //pleasant day
+                    hot.animate().rotation(1080).alpha(0).setDuration(2000);
+                    cold.animate().rotation(2160).alpha(0).setDuration(2000);
+                    freezing.animate().rotation(3240).alpha(0).setDuration(2000);
+                    spring.animate().rotation(3240).alpha(1).setDuration(2000);
+                }
+
+                /*
+                weatherList.get(0).substring(99,100) it allows us to cut the value of temperature in string format
+                from the TemperatureInfo String
+                 */
+                String humidity = weatherList.get(0).substring(99,100);
+                humidity2 = Integer.parseInt(humidity);
+                String humidmessage = humidity2 + "%";
+                textViewHumidity.setText(humidmessage);
+                humidPercent.setVisibility(View.VISIBLE);
 
             } catch (JSONException e) {
                 e.printStackTrace();
                 String message  = "failed!";
                 Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+            }catch (Exception e){
+                e.printStackTrace();
             }
 
         }
@@ -288,6 +375,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         textView = (TextView)findViewById(R.id.textView);
+        textViewTemperature = (TextView)findViewById(R.id.temperature);
+        textViewHumidity = (TextView)findViewById(R.id.humidity);
         editText = (EditText)findViewById(R.id.editText);
         cloud = (ImageView)findViewById(R.id.cloud);
         cloudy_fog = (ImageView)findViewById(R.id.cloudy_fog);
@@ -297,6 +386,14 @@ public class MainActivity extends AppCompatActivity {
         storm = (ImageView)findViewById(R.id.storm);
         clear = (ImageView)findViewById(R.id.clear);
         mist = (ImageView)findViewById(R.id.mist);
+        snow = (ImageView)findViewById(R.id.snow);
+        hot = (ImageView)findViewById(R.id.hot);
+        cold = (ImageView)findViewById(R.id.cold);
+        freezing = (ImageView)findViewById(R.id.freezing);
+        humidPercent = (ImageView)findViewById(R.id.humidPercent);
+        spring = (ImageView)findViewById(R.id.spring);
+
+        humidPercent.setVisibility(View.INVISIBLE);
 
         Button button = (Button)findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {

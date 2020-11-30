@@ -20,18 +20,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="getWeather"
+        android:text="Whats the weather?"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cloud"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
     <EditText
         android:id="@+id/editText"
@@ -46,106 +47,204 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:onClick="getWeather"
-        android:text="Whats the weather?"
-        android:textColor="#FFFFFF"
+    <ImageView
+        android:id="@+id/clear"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:srcCompat="@drawable/clear" />
 
     <ImageView
         android:id="@+id/cloud"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
         android:alpha="0"
-        android:background="@drawable/cloud"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="?attr/selectableItemBackgroundBorderless" />
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:srcCompat="@drawable/cloud" />
 
     <ImageView
         android:id="@+id/cloudy_fog"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
         android:alpha="0"
-        android:background="@drawable/cloudy_fog"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="?attr/selectableItemBackgroundBorderless" />
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:srcCompat="@drawable/cloudy_fog" />
 
     <ImageView
         android:id="@+id/haze"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
         android:alpha="0"
-        android:background="@drawable/haze"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="?attr/selectableItemBackgroundBorderless" />
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:srcCompat="@drawable/haze" />
 
     <ImageView
         android:id="@+id/pollution"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
         android:alpha="0"
-        android:background="@drawable/pollution_smog"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="?attr/selectableItemBackgroundBorderless" />
-
-    <ImageView
-        android:id="@+id/clear"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:alpha="0"
-        android:background="@drawable/clear"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="?attr/selectableItemBackgroundBorderless" />
-
-    <ImageView
-        android:id="@+id/storm"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:alpha="0"
-        android:background="@drawable/storm"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="?attr/selectableItemBackgroundBorderless" />
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:srcCompat="@drawable/pollution_smog" />
 
     <ImageView
         android:id="@+id/rain"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
         android:alpha="0"
-        android:background="@drawable/rain"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="?attr/selectableItemBackgroundBorderless" />
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:srcCompat="@drawable/rain" />
+
+    <ImageView
+        android:id="@+id/storm"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:alpha="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:srcCompat="@drawable/storm" />
 
     <ImageView
         android:id="@+id/mist"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
         android:alpha="0"
-        android:background="@drawable/mist"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:srcCompat="@drawable/mist" />
+
+    <ImageView
+        android:id="@+id/snow"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:alpha="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:srcCompat="@drawable/snow" />
+
+    <ImageView
+        android:id="@+id/hot"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:alpha="0"
+        app:layout_constraintStart_toEndOf="@+id/temperature"
+        app:layout_constraintTop_toBottomOf="@+id/clear"
+        app:srcCompat="@drawable/hot" />
+
+    <ImageView
+        android:id="@+id/cold"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:alpha="0"
+        app:layout_constraintStart_toEndOf="@+id/temperature"
+        app:layout_constraintTop_toBottomOf="@+id/clear"
+        app:srcCompat="@drawable/cold" />
+
+    <ImageView
+        android:id="@+id/freezing"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:alpha="0"
+        app:layout_constraintStart_toEndOf="@+id/temperature"
+        app:layout_constraintTop_toBottomOf="@+id/clear"
+        app:srcCompat="@drawable/freezing" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="?attr/selectableItemBackgroundBorderless" />
+        app:layout_constraintTop_toBottomOf="@+id/clear" />
+
+    <TextView
+        android:id="@+id/humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hot" />
+
+    <ImageView
+        android:id="@+id/humidPercent"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@+id/humidity"
+        app:layout_constraintTop_toBottomOf="@+id/hot"
+        app:srcCompat="@drawable/humidity" />
+
+    <ImageView
+        android:id="@+id/spring"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:alpha="0"
+        app:layout_constraintStart_toStartOf="@+id/hot"
+        app:layout_constraintTop_toBottomOf="@+id/clear"
+        app:srcCompat="@drawable/spring" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
