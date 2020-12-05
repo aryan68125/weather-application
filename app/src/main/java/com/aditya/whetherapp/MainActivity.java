@@ -295,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
                     freezing.animate().rotation(2520).alpha(0).setDuration(2000);
                     spring.animate().rotation(3240).alpha(0).setDuration(2000);
                 }
-                else if(degreeCelsius<=20 && degreeCelsius>=3)
+                else if(degreeCelsius<=20 && degreeCelsius>=1)
                 {  //cold day
                     hot.animate().rotation(720).alpha(0).setDuration(2000);
                     cold.animate().rotation(1800).alpha(1).setDuration(2000);
