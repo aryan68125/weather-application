@@ -191,6 +191,37 @@
         app:layout_constraintTop_toBottomOf="@+id/clear"
         app:srcCompat="@drawable/freezing" />
 
+    <ImageView
+        android:id="@+id/humidPercent"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@+id/humidity"
+        app:layout_constraintTop_toBottomOf="@+id/hot"
+        app:srcCompat="@drawable/humidity" />
+
+    <ImageView
+        android:id="@+id/spring"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:alpha="0"
+        app:layout_constraintStart_toStartOf="@+id/hot"
+        app:layout_constraintTop_toBottomOf="@+id/clear"
+        app:srcCompat="@drawable/spring" />
+
+    <ImageView
+        android:id="@+id/fogImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:alpha="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:srcCompat="@drawable/fog" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -227,24 +258,5 @@
         android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hot" />
-
-    <ImageView
-        android:id="@+id/humidPercent"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toEndOf="@+id/humidity"
-        app:layout_constraintTop_toBottomOf="@+id/hot"
-        app:srcCompat="@drawable/humidity" />
-
-    <ImageView
-        android:id="@+id/spring"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="10dp"
-        android:alpha="0"
-        app:layout_constraintStart_toStartOf="@+id/hot"
-        app:layout_constraintTop_toBottomOf="@+id/clear"
-        app:srcCompat="@drawable/spring" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

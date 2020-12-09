@@ -4,10 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.location.Address;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -46,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView mist;
     ImageView snow;
     ImageView humidPercent;
+    ImageView Fog;
 
     //temperature related images
     ImageView hot;
@@ -159,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
                     snow.animate().rotation(2880).alpha(0).setDuration(2000);
+                    Fog.animate().rotation(3240).alpha(0).setDuration(2000);
                 }
                 else if(mainInfo.equals("Clear"))
                 {
@@ -171,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
                     clear.animate().rotation(2520).alpha(1).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
                     snow.animate().rotation(2880).alpha(0).setDuration(2000);
+                    Fog.animate().rotation(3240).alpha(0).setDuration(2000);
                 }
                 else if(mainInfo.equals("Mist"))
                 {
@@ -183,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(1).setDuration(2000);
                     snow.animate().rotation(2880).alpha(0).setDuration(2000);
+                    Fog.animate().rotation(3240).alpha(0).setDuration(2000);
                 }
                 else if(mainInfo.equals("Cloudy fog"))
                 {
@@ -195,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
                     snow.animate().rotation(2880).alpha(0).setDuration(2000);
+                    Fog.animate().rotation(3240).alpha(0).setDuration(2000);
                 }
                 else if(mainInfo.equals("Haze"))
                 {
@@ -207,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
                     snow.animate().rotation(2880).alpha(0).setDuration(2000);
+                    Fog.animate().rotation(3240).alpha(0).setDuration(2000);
                 }
                 else if(mainInfo.equals("Smoke"))
                 {
@@ -219,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
                     snow.animate().rotation(2880).alpha(0).setDuration(2000);
+                    Fog.animate().rotation(3240).alpha(0).setDuration(2000);
                 }
                 else if(mainInfo.equals("Rain"))
                 {
@@ -231,6 +236,7 @@ public class MainActivity extends AppCompatActivity {
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
                     snow.animate().rotation(2880).alpha(0).setDuration(2000);
+                    Fog.animate().rotation(3240).alpha(0).setDuration(2000);
                 }
                 else if(mainInfo.equals("Storm"))
                 {
@@ -243,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
                     snow.animate().rotation(2880).alpha(0).setDuration(2000);
+                    Fog.animate().rotation(3240).alpha(0).setDuration(2000);
                 }
                 else if(mainInfo.equals("Snow"))
                 {
@@ -255,6 +262,19 @@ public class MainActivity extends AppCompatActivity {
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
                     snow.animate().rotation(2880).alpha(1).setDuration(2000);
+                    Fog.animate().rotation(3240).alpha(0).setDuration(2000);
+                }
+                else if(mainInfo.equals("Fog")){
+                    cloud.animate().rotation(360).alpha(0).setDuration(2000);
+                    cloudy_fog.animate().rotation(720).alpha(0).setDuration(2000);
+                    haze.animate().rotation(1080).alpha(0).setDuration(2000);
+                    pollution.animate().rotation(1440).alpha(0).setDuration(2000);
+                    rain.animate().rotation(1800).alpha(0).setDuration(2000);
+                    storm.animate().rotation(2160).alpha(0).setDuration(2000);
+                    clear.animate().rotation(2520).alpha(0).setDuration(2000);
+                    mist.animate().rotation(2880).alpha(0).setDuration(2000);
+                    snow.animate().rotation(2880).alpha(0).setDuration(2000);
+                    Fog.animate().rotation(3240).alpha(1).setDuration(2000);
                 }
                 else
                 {
@@ -267,6 +287,7 @@ public class MainActivity extends AppCompatActivity {
                     clear.animate().rotation(2520).alpha(0).setDuration(2000);
                     mist.animate().rotation(2880).alpha(0).setDuration(2000);
                     snow.animate().rotation(2880).alpha(0).setDuration(2000);
+                    Fog.animate().rotation(3240).alpha(0).setDuration(2000);
                 }
 
                 //this will grab the contents inside the weather key in tha json result that we will get from the server
@@ -392,6 +413,7 @@ public class MainActivity extends AppCompatActivity {
         freezing = (ImageView)findViewById(R.id.freezing);
         humidPercent = (ImageView)findViewById(R.id.humidPercent);
         spring = (ImageView)findViewById(R.id.spring);
+        Fog = (ImageView)findViewById(R.id.fogImage);
 
         humidPercent.setVisibility(View.INVISIBLE);
 
