@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
                 return "failed!";
             }
+            Log.i("re",result);
             return result;
         }
 
